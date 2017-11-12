@@ -94,6 +94,7 @@ void Fireworks::randomizeVelocity(Particle particles[])
 {
 	float biggerRange = maxRange * 2.0f;
 
+	
 	for (unsigned int i = 0; i < arraySize; i++)
 	{
 		particles[i].Vel.x = ((rand() % (int)(biggerRange * 100)) + (-biggerRange * 100)) / 100;
