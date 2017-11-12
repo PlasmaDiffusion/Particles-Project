@@ -51,6 +51,14 @@ void Fireworks::Update(Particle particles[], float dt)
 
 			//Every particle gets a random velocity now to burst into a firework
 			randomizeVelocity(particles);
+
+			for (unsigned int i = 0; i < arraySize; i++)
+			{
+				particles[i].Col.x = (float)(rand() % 100) / 100.0f;
+				particles[i].Col.y = (float)(rand() % 100) / 100.0f;
+				particles[i].Col.z = (float)(rand() % 100) / 100.0f;
+			}
+
 			}
 		
 
@@ -66,6 +74,7 @@ void Fireworks::Update(Particle particles[], float dt)
 			{
 				currentState = BURSTED;
 				setAllVelocities(particles, 0.0f, -1.0f, 0.0f);
+				time = 0.0f;
 			}
 
 		}
@@ -93,13 +102,12 @@ void Fireworks::setParameter(float newParameter)
 void Fireworks::randomizeVelocity(Particle particles[])
 {
 	float biggerRange = maxRange * 2.0f;
-
 	
 	for (unsigned int i = 0; i < arraySize; i++)
 	{
-		particles[i].Vel.x = ((rand() % (int)(biggerRange * 100)) + (-biggerRange * 100)) / 100;
-		particles[i].Vel.y = ((rand() % (int)(biggerRange * 100)) + (-biggerRange * 100)) / 100;
-		particles[i].Vel.z = ((rand() % (int)(biggerRange * 100)) + (-biggerRange * 100)) / 100;
+		particles[i].Vel.x = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
+		particles[i].Vel.y = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
+		particles[i].Vel.z = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
 	}
 
 }
@@ -113,5 +121,17 @@ void Fireworks::setAllVelocities(Particle particles[], float velX, float velY, f
 		particles[i].Vel.x = velX;
 		particles[i].Vel.y = velY;
 		particles[i].Vel.z = velZ;
+	}
+}
+
+//Choose a random direction of sorts
+void Fireworks::setAllColours(Particle particles[], float colR, float colG, float colB)
+{
+
+	for (unsigned int i = 0; i < arraySize; i++)
+	{
+		particles[i].Col.x = colR;
+		particles[i].Col.y = colG;
+		particles[i].Col.z = colB;
 	}
 }

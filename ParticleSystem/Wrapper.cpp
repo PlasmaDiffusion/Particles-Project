@@ -91,3 +91,8 @@ void setVelocityLimit(float newLimit)
 {
 	particleSystem->maxVelocity = newLimit;
 }
+
+void finish()
+{
+	particleSystem->~ParticleSystem();
+}

@@ -20,6 +20,7 @@ public:
 
 	void randomizeVelocity(Particle particles[]);
 	void setAllVelocities(Particle particles[], float velX, float velY, float velZ);
+	void setAllColours(Particle particles[], float colR, float colG, float colB);
 
 private:
 	//Particle *m_ParticleBuff;

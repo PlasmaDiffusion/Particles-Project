@@ -10,5 +10,5 @@ extern "C"
 	__declspec(dllexport) void updateParticles(Particle *p, float dt);
 	__declspec(dllexport) void updateParameter(float value, int type);
 	__declspec(dllexport) void setVelocityLimit(float newLimit);
-
+	__declspec(dllexport) void finish();
 }
