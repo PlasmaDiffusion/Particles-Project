@@ -1,0 +1,12 @@
+syntax: glob
+*.suo
+*.obj
+*.user
+*.pdb
+*.exe
+*.sdf
+*.db
+*.opendb
+*.ipch
+Debug/*
+Release/*

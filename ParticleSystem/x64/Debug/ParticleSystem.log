@@ -1,0 +1,13 @@
+﻿  ParticleSystemcpp.cpp
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\particlesystem.h(8): warning C4091: '__declspec(dllexport)': ignored on left of 'Vec' when no variable is declared
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\particlesystem.h(15): warning C4091: '__declspec(dllexport)': ignored on left of 'Particle' when no variable is declared
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\particlesystemcpp.cpp(120): warning C4018: '<': signed/unsigned mismatch
+  Fireworks.cpp
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\particlesystem.h(8): warning C4091: '__declspec(dllexport)': ignored on left of 'Vec' when no variable is declared
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\particlesystem.h(15): warning C4091: '__declspec(dllexport)': ignored on left of 'Particle' when no variable is declared
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\fireworks.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\fireworks.cpp(97): warning C4018: '<': signed/unsigned mismatch
+c:\users\100580683\documents\unity\ogknuckles-lab5engine-748088299bdc\particles assignment\particlesystem\fireworks.cpp(110): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+     Creating library C:\Users\100580683\Documents\Unity\OGknuckles-lab5engine-748088299bdc\Particles Assignment\x64\Debug\ParticleSystem.lib and object C:\Users\100580683\Documents\Unity\OGknuckles-lab5engine-748088299bdc\Particles Assignment\x64\Debug\ParticleSystem.exp
+  ParticleSystem.vcxproj -> C:\Users\100580683\Documents\Unity\OGknuckles-lab5engine-748088299bdc\Particles Assignment\x64\Debug\ParticleSystem.dll
