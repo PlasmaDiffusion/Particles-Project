@@ -1,11 +1,14 @@
 #include "Wrapper.h"
 #include "ParticleSystem.h"
 #include "Fireworks.h"
-#include "AttractionParticleSystem.h"
 #include "Fountain.h"
 #include <windows.h>
 #include <fstream>
 #include <ctime>
+
+/*
+The following code is built on the code for the tutorial from lab 5. It uses it as a base but adds classes and other particle components.
+*/
 
 ParticleSystem *particleSystem;
 

@@ -110,14 +110,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AttractionParticleSystem.h" />
     <ClInclude Include="Fireworks.h" />
     <ClInclude Include="Fountain.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AttractionParticleSystem.cpp" />
     <ClCompile Include="Fireworks.cpp" />
     <ClCompile Include="Fountain.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
