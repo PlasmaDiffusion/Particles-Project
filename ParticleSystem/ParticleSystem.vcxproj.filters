@@ -27,11 +27,11 @@
     <ClInclude Include="Fireworks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Fountain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ParticleSystemcpp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Wrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,6 +39,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fireworks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fountain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

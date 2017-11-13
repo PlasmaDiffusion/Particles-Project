@@ -2,6 +2,7 @@
 #include "ParticleSystem.h"
 #include "Fireworks.h"
 #include "AttractionParticleSystem.h"
+#include "Fountain.h"
 #include <windows.h>
 #include <fstream>
 #include <ctime>
@@ -10,8 +11,9 @@ ParticleSystem *particleSystem;
 
 enum SystemType
 {
-	ATTRACTOR,
-	DIRECTIONAL
+	DEFAULT,
+	FIREWORK,
+	FOUNTAIN
 };
 
 void initEmitter(int type)
@@ -20,22 +22,22 @@ void initEmitter(int type)
 	outFile.open("outFile.txt", std::ios_base::app);
 
 
-	if (type == 0)
+	if (type == DEFAULT)
 	{
 		particleSystem = new ParticleSystem();
 		outFile << "Default" << std::endl;
 
 	
 	}
-	else if (type == 1)
+	else if (type == FIREWORK)
 	{
 		particleSystem = new Fireworks();
-		outFile << "Directional " << std::endl;
+		outFile << "Firework " << std::endl;
 	}
-	else if (type == 2)
+	else if (type == FOUNTAIN)
 	{
-		particleSystem = new AttractionParticleSystem();
-		outFile << "Attraction " << std::endl;
+		particleSystem = new Fountain();
+		outFile << "Fountain " << std::endl;
 	}
 
 	srand((unsigned)time(0));
@@ -83,7 +85,7 @@ void updateParticles(Particle *p, float dt)
 //Update a class specific value
 void updateParameter(float value, int type) 
 {
-	particleSystem->setParameter(value);
+	particleSystem->setParameter(value, type);
 }
 
 
@@ -95,4 +97,9 @@ void setVelocityLimit(float newLimit)
 void finish()
 {
 	particleSystem->~ParticleSystem();
+}
+
+int getState()
+{
+	return particleSystem->checkState();
 }

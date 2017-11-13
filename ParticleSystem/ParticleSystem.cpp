@@ -106,6 +106,7 @@ Vec VectorMath::clamp(Vec v, float maxValue, bool positive)
 
 ParticleSystem::ParticleSystem() 
 {
+	//time = 0.0f;
 }
 
 ParticleSystem::~ParticleSystem() 
@@ -115,7 +116,9 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::Update(Particle particles[], float dt) 
 {
-
+	//Add dt for later
+	math.deltaTime = dt;
+	time += dt;
 
 	for (unsigned int i = 0; i < arraySize; i++)
 	{
@@ -126,18 +129,27 @@ void ParticleSystem::Update(Particle particles[], float dt)
 
 
 		//Limit velocity
-		math.clamp(particles[i].Vel, maxVelocity, true);
-		math.clamp(particles[i].Vel, -maxVelocity, false);
+		particles[i].Vel = math.clamp(particles[i].Vel, maxVelocity, true);
+		particles[i].Vel = math.clamp(particles[i].Vel, -maxVelocity, false);
 
 		//Move from velocity
 		particles[i].Pos = math.add(particles[i].Pos, particles[i].Vel);
 
 
 	}
+
 }
 
 //Set special parameter that can be for different variables depending on the class
-void ParticleSystem::setParameter(float newParameter)
+void ParticleSystem::setParameter(float newParameter, int parmeterNumber)
 {
-	
+
+	lifetime = newParameter;
+}
+
+//Check if the system finished and is ready to be destroyed/restarted
+int ParticleSystem::checkState()
+{
+	if (time > lifetime) return -1;
+	else return 0;
 }

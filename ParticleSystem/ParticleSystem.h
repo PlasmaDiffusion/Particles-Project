@@ -36,6 +36,9 @@ public:
 
 	Vec clamp(Vec v, Vec maxValue);
 	Vec	clamp(Vec v, float maxValue, bool positive);
+
+
+	float deltaTime;
 };
 
 //Base particle system class
@@ -45,13 +48,18 @@ public:
 	ParticleSystem();
 	~ParticleSystem();
 	virtual void Update(Particle particles[], float dt);
-	virtual void setParameter(float newParameter);
+	virtual void setParameter(float newParameter, int parmeterNumber);
+	virtual int checkState();
 	int arraySize; //Arr size
 	Vec emitterPos;
 	float maxRange = 3; //Max distance particles can spawn from origin
-	Particle *m_ParticleBuff;
 
 	float maxVelocity;
 
 	VectorMath math;
+
+protected:
+
+	float time;
+	float lifetime;
 };

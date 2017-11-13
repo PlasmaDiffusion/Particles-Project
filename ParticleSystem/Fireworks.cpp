@@ -5,7 +5,7 @@ enum State
 	RISING,
 	BURSTING,
 	BURSTED,
-	DONE
+	DONE = -1
 };
 
 Fireworks::Fireworks()
@@ -22,19 +22,11 @@ Fireworks::~Fireworks()
 
 void Fireworks::Update(Particle particles[], float dt)
 {
+
 	//First update as normally. The state of the particles will overtime change velocity from the initial velocity.
-	for (unsigned int i = 0; i < arraySize; i++)
-	{
-		//Accelerate
-		particles[i].Vel = math.add(particles[i].Vel, particles[i].Accl);
 
-		//Limit velocity
-		math.clamp(particles[i].Vel, maxVelocity, true);
-		math.clamp(particles[i].Vel, -maxVelocity, false);
+	ParticleSystem::Update(particles, dt);
 
-		//Move from velocity
-		particles[i].Pos = math.add(particles[i].Pos, particles[i].Vel);
-	}
 	
 	//Wait a set amount of time to trigger a state change in the firework. When a state change happens, a velocity change happens
 
@@ -43,8 +35,8 @@ void Fireworks::Update(Particle particles[], float dt)
 
 
 
-		if (time < timeUntilStateChange)time += dt;
-		else {
+		if (time > timeUntilStateChange)
+			{
 			//Change state and time
 			currentState = BURSTING;
 			time = 0.0f;
@@ -52,6 +44,7 @@ void Fireworks::Update(Particle particles[], float dt)
 			//Every particle gets a random velocity now to burst into a firework
 			randomizeVelocity(particles);
 
+			//Give each firework a random colours
 			for (unsigned int i = 0; i < arraySize; i++)
 			{
 				particles[i].Col.x = (float)(rand() % 100) / 100.0f;
@@ -69,19 +62,18 @@ void Fireworks::Update(Particle particles[], float dt)
 
 
 
-			if (time < timeUntilStateChange)time += dt;
-			else
+			if (time > timeUntilStateChange)
 			{
 				currentState = BURSTED;
 				setAllVelocities(particles, 0.0f, -1.0f, 0.0f);
+				setAllAccelerations(particles, 0.0f, -0.1f, 0.0f);
 				time = 0.0f;
 			}
 
 		}
 		else if (currentState == BURSTED) //A firework formed. Now let the particles fall down a little and be done
 		{
-			if (time < timeUntilStateChange)time += dt;
-			else
+			if (time > timeUntilStateChange)
 			{
 				//Finished. Remove particles
 				currentState = DONE;
@@ -93,9 +85,9 @@ void Fireworks::Update(Particle particles[], float dt)
 	
 }
 
-void Fireworks::setParameter(float newParameter)
+void Fireworks::setParameter(float newParameter, int parameterNumber)
 {
-	timeUntilStateChange = newParameter;
+	if (parameterNumber == 0)	timeUntilStateChange = newParameter;
 }
 
 //Choose a random direction of sorts
@@ -105,9 +97,9 @@ void Fireworks::randomizeVelocity(Particle particles[])
 	
 	for (unsigned int i = 0; i < arraySize; i++)
 	{
-		particles[i].Vel.x = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
-		particles[i].Vel.y = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
-		particles[i].Vel.z = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 200;
+		particles[i].Vel.x = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 400;
+		particles[i].Vel.y = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 400;
+		particles[i].Vel.z = ((rand() % (int)(biggerRange * 200)) + (-biggerRange * 100)) / 400;
 	}
 
 }
@@ -125,6 +117,18 @@ void Fireworks::setAllVelocities(Particle particles[], float velX, float velY, f
 }
 
 //Choose a random direction of sorts
+void Fireworks::setAllAccelerations(Particle particles[], float acclX, float acclY, float acclZ)
+{
+
+	for (unsigned int i = 0; i < arraySize; i++)
+	{
+		particles[i].Accl.x = acclX;
+		particles[i].Accl.y = acclY;
+		particles[i].Accl.z = acclZ;
+	}
+}
+
+//Choose a random direction of sorts
 void Fireworks::setAllColours(Particle particles[], float colR, float colG, float colB)
 {
 
@@ -134,4 +138,9 @@ void Fireworks::setAllColours(Particle particles[], float colR, float colG, floa
 		particles[i].Col.y = colG;
 		particles[i].Col.z = colB;
 	}
+}
+
+int Fireworks::checkState()
+{
+	return currentState;
 }
